@@ -1,0 +1,65 @@
+/*
+ * button_reading.c
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Admin
+ */
+#include "main.h"  // we aim to work with more than one buttons
+#include "button_reading.h"
+#include "global.h"
+#define N0_OF_BUTTONS 3
+#define DURATION_FOR_AUTO_RESTART 500
+static GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
+static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS];
+static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS];
+static uint8_t flagForButtonNotPress5s[N0_OF_BUTTONS];
+static uint16_t counterForButtonNotPress5s[N0_OF_BUTTONS];
+
+GPIO_PinState readPin(int button){
+	GPIO_PinState state ;
+	switch(button){
+			case 0: state = HAL_GPIO_ReadPin(RESET_GPIO_Port, RESET_Pin) ; break;
+			case 1: state = HAL_GPIO_ReadPin(INC_GPIO_Port, INC_Pin) ; break;
+			case 2: state = HAL_GPIO_ReadPin(DEC_GPIO_Port, DEC_Pin) ; break;
+			default: break;
+		}
+	return state;
+}
+ void button_reading(void){
+	 for ( int i = 0; i < N0_OF_BUTTONS ; i++) {
+		 debounceButtonBuffer2 [i] = debounceButtonBuffer1[i];
+		 debounceButtonBuffer1 [i] = readPin(i) ;
+		 if( debounceButtonBuffer1[i] == debounceButtonBuffer2[i])
+			 buttonBuffer[i] = debounceButtonBuffer1[i];
+		 if( buttonBuffer[i] == GPIO_PIN_RESET) {
+			 if( counterForButtonNotPress5s[i] < DURATION_FOR_AUTO_RESTART ){
+				 counterForButtonNotPress5s[i]++;
+			 } else {
+				 flagForButtonNotPress5s[i] = 1;
+			 }
+		 } else {
+			 counterForButtonNotPress5s[i] = 0;
+			 flagForButtonNotPress5s[i] = 0;
+		 }
+	 }
+ }
+
+int is_button_pressed(int index){
+	 if( index >= N0_OF_BUTTONS) return 0;
+	 if(buttonBuffer[index] == GPIO_PIN_SET) return 1;
+	 else return 0;
+}
+
+int is_button_not_pressed(int index){
+	 if( index >= N0_OF_BUTTONS ) return 0;
+	 if(buttonBuffer[index] == GPIO_PIN_RESET) return 1;
+	 else return 0;
+ }
+int is_button_not_pressed_5s(int index){
+	 if( index >= N0_OF_BUTTONS ) return 0xff ;
+	 if(flagForButtonNotPress5s[index] == 1) return 1;
+	 	 else return 0;
+}
+
+
+

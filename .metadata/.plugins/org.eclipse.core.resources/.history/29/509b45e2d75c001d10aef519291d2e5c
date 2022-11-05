@@ -1,0 +1,14 @@
+/*
+ * global.h
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Admin
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+extern int timer0_counter;
+extern int timer0_flag;
+
+#endif /* INC_GLOBAL_H_ */

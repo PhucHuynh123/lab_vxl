@@ -1,0 +1,17 @@
+/*
+ * button_reading.h
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Admin
+ */
+#include"main.h"
+#ifndef INC_BUTTON_READING_H_
+#define INC_BUTTON_READING_H_
+
+GPIO_PinState readPin(int button);
+void button_reading(void);
+int is_button_pressed(int index);
+int is_button_not_pressed(int index);
+int is_button_not_pressed_5s(int index);
+
+#endif /* INC_BUTTON_READING_H_ */

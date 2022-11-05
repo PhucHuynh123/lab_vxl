@@ -1,0 +1,4 @@
+led_display.c:12:6:state_7seg	24	static
+led_display.c:22:6:display7SEG	32	static
+led_display.c:60:6:count_down	8	static
+led_display.c:89:6:blink_led	8	static

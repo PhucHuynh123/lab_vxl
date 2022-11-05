@@ -1,0 +1,65 @@
+/*
+ * button_reading.c
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Admin
+ */
+#include "main.h"  // we aim to work with more than one buttons
+#include "button_reading.h"
+#include "global.h"
+#define N0_OF_BUTTONS 3
+
+int KeyReg0[3] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg1[3] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg2[3] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg3[3] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+
+
+int button_flag[3] = {0,0,0};
+int is_pressed[3] = {0,0,0};
+int Timeout[3] = {0,0,0};
+
+int ispressed(int index){
+	return is_pressed[index];
+}
+
+void getKeyInput(){
+	for(int i = 0;i<3;i++){
+		KeyReg2[i] = KeyReg1[i];
+		KeyReg1[i] = KeyReg0[i];
+		if(i == 0){
+			KeyReg0[i] = HAL_GPIO_ReadPin(RESET_GPIO_Port,RESET_Pin);
+		}
+		else if(i == 1){
+			KeyReg0[i] = HAL_GPIO_ReadPin(INC_GPIO_Port,INC_Pin);
+		}
+		else{
+			KeyReg0[i] = HAL_GPIO_ReadPin(DEC_GPIO_Port,DEC_Pin);
+		}
+		if((KeyReg1[i] == KeyReg0[i]) && (KeyReg1[i] == KeyReg2[i])){
+			if(KeyReg2[i] != KeyReg3[i]){
+				KeyReg3[i] = KeyReg2[i];
+				if(KeyReg3[i] == PRESSED_STATE){
+					Timeout[i] = 300;
+					button_flag[i] = 1;
+				}
+				else{
+					is_pressed[i] = 0;
+					button_flag[i] = 0;
+				}
+			}
+			else{
+				if(Timeout[i] > 0){
+					Timeout[i]--;
+				}
+				if(KeyReg3[i] == PRESSED_STATE && Timeout[i] == 0){
+					KeyReg3[i] = NORMAL_STATE;
+					is_pressed[i] = 1;
+				}
+			}
+		}
+	}
+}
+
+
+

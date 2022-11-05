@@ -1,0 +1,19 @@
+/*
+ * global.h
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Admin
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#define MODE1 1
+#define MODE2 2
+#define MODE3 3
+
+extern int State;
+extern int counter;
+
+
+#endif /* INC_GLOBAL_H_ */

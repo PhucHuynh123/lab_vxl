@@ -1,0 +1,72 @@
+Configuration	project
+STM32CubeMX 	6.3.0
+Date	11/05/2022
+MCU	STM32F103C6Ux
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SYS	No Debug	SYS_VS_ND	VP_SYS_VS_ND
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+15	PA5	GPIO_Output	LED_RED
+18	PB0	GPIO_Output	
+19	PB1	GPIO_Output	
+20	PB2	GPIO_Output	
+29	PA8	GPIO_Input	RESET
+30	PA9	GPIO_Input	INC
+31	PA10	GPIO_Input	DEC
+39	PB3	GPIO_Output	
+40	PB4	GPIO_Output	
+41	PB5	GPIO_Output	
+42	PB6	GPIO_Output	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SYS	No Debug	SYS_VS_ND	VP_SYS_VS_ND
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+15	PA5	GPIO_Output	LED_RED
+18	PB0	GPIO_Output	
+19	PB1	GPIO_Output	
+20	PB2	GPIO_Output	
+29	PA8	GPIO_Input	RESET
+30	PA9	GPIO_Input	INC
+31	PA10	GPIO_Input	DEC
+39	PB3	GPIO_Output	
+40	PB4	GPIO_Output	
+41	PB5	GPIO_Output	
+42	PB6	GPIO_Output	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : project
+Project Folder : E:\labs_vxl\mid-term\project
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_F1 V1.8.4
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+
