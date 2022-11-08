@@ -32,7 +32,6 @@ void green1Control(){
 	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, 0);
 }
 void green2Control(){
-
 	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, 1);
 	HAL_GPIO_WritePin(amber2_GPIO_Port, amber2_Pin, 1);
 	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, 0);

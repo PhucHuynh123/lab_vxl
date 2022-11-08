@@ -16,6 +16,7 @@
  			display_two_7SEG();
  			if(button_flag[0] == 1 ){
  				button_flag[0] = 0;
+ 				clear_led();
  				setTimer6(10000);
  				State = MODE2;
  			}
@@ -31,8 +32,10 @@
  				status4 = 1;
  				status4_1 = 1;
  				status4_2 = 1;
+ 				clear_led();
  				State = MODE1;
  			}
+
  			blink_led_red();
  			if(button_flag[1] == 1){
  				button_flag[1] = 0;
@@ -48,8 +51,9 @@
  			}
  			if (button_flag[0]){
  				button_flag[0] = 0;
- 				State = MODE3;
+ 				clear_led();
  				setTimer6(10000);
+ 				State = MODE3;
  			}
  			break;
  		case MODE3:
@@ -63,6 +67,7 @@
  				status4 = 1;
  				status4_1 = 1;
  				status4_2 = 1;
+ 				clear_led();
  				State = MODE1;
  			}
  			blink_led_amber();
@@ -79,9 +84,10 @@
  			}
  			update_two_7SEG(bufferAmber);
  			if (button_flag[0]){
- 					button_flag[0] = 0;
- 					setTimer6(10000);
- 					State = MODE4;
+ 				button_flag[0] = 0;
+ 				setTimer6(10000);
+ 				clear_led();
+ 				State = MODE4;
  			}
  			break;
  		case MODE4:
@@ -95,6 +101,7 @@
  				status4 = 1;
  				status4_1 = 1;
  				status4_2 = 1;
+ 				clear_led();
  				State = MODE1;
  			}
  			blink_led_green();
@@ -113,6 +120,7 @@
  			if(button_flag[0]){
  				button_flag[0] = 0;
  				State = MODE1;
+ 				clear_led();
  				status1 = 1;
  				status2 = 1;
  				status3 = 1;
