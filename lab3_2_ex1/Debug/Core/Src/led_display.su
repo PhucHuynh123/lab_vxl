@@ -1,0 +1,10 @@
+led_display.c:8:6:clear_led	8	static
+led_display.c:16:6:state_7seg1	24	static
+led_display.c:25:6:display7SEG1	32	static
+led_display.c:61:6:state_7seg2	24	static
+led_display.c:70:6:display7SEG2	32	static
+led_display.c:109:6:display_two_7SEG	8	static
+led_display.c:183:6:blink_led_red	8	static
+led_display.c:214:6:blink_led_amber	8	static
+led_display.c:244:6:blink_led_green	8	static
+led_display.c:275:6:update_two_7SEG	16	static

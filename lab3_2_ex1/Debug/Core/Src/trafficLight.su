@@ -1,0 +1,8 @@
+trafficLight.c:9:6:red1Control	8	static
+trafficLight.c:14:6:red2Control	8	static
+trafficLight.c:19:6:amber1Control	8	static
+trafficLight.c:24:6:amber2Control	8	static
+trafficLight.c:29:6:green1Control	8	static
+trafficLight.c:34:6:green2Control	8	static
+trafficLight.c:42:6:fsm_automatic_1	8	static
+trafficLight.c:75:6:fsm_automatic_2	8	static

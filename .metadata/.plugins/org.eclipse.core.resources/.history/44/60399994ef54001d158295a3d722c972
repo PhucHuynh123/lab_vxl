@@ -1,0 +1,140 @@
+  /*
+ * led_display.c
+ *
+ *  Created on: Oct 3, 2021
+ *      Author:
+ */
+#include "main.h"
+#include "led_display.h"
+#include "trafficLight.h"
+#include"timer.h"
+
+void state_7seg1(int a ,int b , int c , int d , int e ,int f, int g){
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2,a);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3,b);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4,c);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5,d);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6,e);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7,f);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8,g);
+ }
+void display7SEG1(int num){
+	 if (num == 0){
+		state_7seg1(0,0,0,0,0,0,1);
+	 }
+	 if (num == 1){
+		 state_7seg1(1,0,0,1,1,1,1);
+	 }
+	 if (num == 2){
+		 state_7seg1(0,0,1,0,0,1,0);
+	 }
+	 if (num == 3){
+		 state_7seg1(0,0,0,0,1,1,0);
+	 }
+	 if (num == 4){
+		 state_7seg1(1,0,0,1,1,0,0);
+	 }
+	 if (num == 5){
+		 state_7seg1(0,1,0,0,1,0,0);
+	 }
+	 if (num == 6){
+		 state_7seg1(0,1,0,0,0,0,0);
+	 }
+	 if(num == 7){
+		 state_7seg1(0,0,0,1,1,1,1);
+	 }
+	 if (num == 8){
+		 state_7seg1(0,0,0,0,0,0,0);
+	 }
+	 if(num == 9){
+		 state_7seg1(0,0,0,0,1,0,0);
+	 }
+	 if(num >= 10){
+		 state_7seg1(0,0,0,0,0,0,1);
+	 }
+}
+
+void state_7seg2(int a ,int b , int c , int d , int e ,int f, int g){
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9,a);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10,b);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11,c);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12,d);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13,e);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14,f);
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15,g);
+ }
+void display7SEG2(int num){
+	 if (num == 0){
+		state_7seg2(0,0,0,0,0,0,1);
+	 }
+	 if (num == 1){
+		 state_7seg2(1,0,0,1,1,1,1);
+	 }
+	 if (num == 2){
+		 state_7seg2(0,0,1,0,0,1,0);
+	 }
+	 if (num == 3){
+		 state_7seg2(0,0,0,0,1,1,0);
+	 }
+	 if (num == 4){
+		 state_7seg2(1,0,0,1,1,0,0);
+	 }
+	 if (num == 5){
+		 state_7seg2(0,1,0,0,1,0,0);
+	 }
+	 if (num == 6){
+		 state_7seg2(0,1,0,0,0,0,0);
+	 }
+	 if(num == 7){
+		 state_7seg2(0,0,0,1,1,1,1);
+	 }
+	 if (num == 8){
+		 state_7seg2(0,0,0,0,0,0,0);
+	 }
+	 if(num == 9){
+		 state_7seg2(0,0,0,0,1,0,0);
+	 }
+	 if(num >= 10){
+		 state_7seg2(0,0,0,0,0,0,1);
+	 }
+}
+
+
+//void fsm_7SEG1(int time1){
+//	switch(state){
+//
+//	}
+//}
+void display_two_7SEG1(int time1){
+	if(timer_flag1 == 1){
+		setTimer2(500);
+	if(state_led_7seg1 == 0){
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin,  0);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin,  1);
+		display7SEG1(time1/10);
+	}
+	if (timer_flag2 == 1  && state_led_7seg1 == 1 ){
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin,  1);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin,  0);
+		display7SEG1(time1%10);
+	}
+	state_led_7seg1 = 1 - state_led_7seg1;
+	}
+}
+
+void display_two_7SEG2(int time2){
+	 setTimer2(250);
+	 if(state_led_7seg2 == 0){
+		 HAL_GPIO_WritePin(EN2_GPIO_Port, EN0_Pin,  0);
+		 HAL_GPIO_WritePin(EN3_GPIO_Port, EN1_Pin,  1);
+		 display7SEG2(time2/10);
+	 }
+	 if(state_led_7seg2 == 1){
+		 HAL_GPIO_WritePin(EN2_GPIO_Port, EN0_Pin,  1);
+		 HAL_GPIO_WritePin(EN3_GPIO_Port, EN1_Pin,  0);
+		 display7SEG2(time2%10);
+	 }
+	 state_led_7seg2 = 1 - state_led_7seg2;
+}
+
+

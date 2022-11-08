@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ex1/Core/Inc/software_timee.h&apos; to &apos;software_timer.h&apos;" description="Rename resource &apos;software_timee.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/software_timee.h" name="software_timer.h" stamp="1664842533836" updateReferences="true"/>
+</session>

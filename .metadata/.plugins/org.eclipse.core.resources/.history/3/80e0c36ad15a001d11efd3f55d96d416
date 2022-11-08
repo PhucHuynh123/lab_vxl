@@ -1,0 +1,102 @@
+
+#include "main.h"
+#include "input_reading.h"
+#include "input_processing.h"
+#include "trafficLight.h"
+#include "global.h"
+#include "timer.h"
+
+
+int bufferRed = 5;
+int bufferAmber = 2 ;
+int bufferGreen = 3;
+
+int timeRed = 5;
+int timeAmber = 2;
+int timeGreen = 3;
+
+ void fsm_for_input_processing () {
+	switch (State){
+		case MODE1:
+			if(button_flag[0] == 0){
+				fsm_automatic_1();
+				fsm_automatic_2();
+				display_two_7SEG();
+			}
+			if(button_flag[0] == 1){
+				button_flag[0] = 0;
+				State = MODE2;
+			}
+			break;
+		case MODE2:
+			if(button_flag[1] == 0){
+				blink_led_red();
+			}
+			if(button_flag[1] == 1){
+				blink_led_red();
+				bufferRed++;
+				if(bufferRed > 99){
+					bufferRed = 1;
+				}
+				button_flag[1] = 0;
+				if(button_flag[2] == 1){
+					timeRed = bufferRed;
+				}
+			}
+			update_two_7SEG(bufferRed);
+			if (button_flag[0]){
+				button_flag[0] = 0;
+				State = MODE3;
+			}
+			break;
+		case MODE3:
+			if(button_flag[1] == 0){
+				blink_led_amber();
+			}
+			if(button_flag[1] == 1){
+				blink_led_amber();
+				bufferAmber++;
+				if(bufferAmber > 99){
+					bufferAmber = 1;
+				}
+				button_flag[1] = 0;
+				if(button_flag[2] == 1){
+					timeAmber = bufferAmber;
+				}
+			}
+			update_two_7SEG(bufferAmber);
+			if (button_flag[0]){
+					button_flag[0] = 0;
+					State = MODE4;
+			}
+			break;
+		case MODE4:
+			if(button_flag[1] == 0){
+				blink_led_green();
+			}
+			if(button_flag[1] == 1){
+				blink_led_green();
+				bufferGreen++;
+				if(bufferGreen > 99){
+					bufferGreen = 1;
+				}
+				button_flag[1] = 0;
+				if(button_flag[2] == 1){
+					timeGreen = bufferGreen;
+				}
+			}
+			update_two_7SEG(bufferGreen);
+			if(button_flag[0]){
+				button_flag[0] = 0;
+				State = MODE1;
+				status1 = 1;
+				status2 = 1;
+				status4 = 1;
+				status4_1 = 1;
+				status4_2 = 1;
+			}
+			break;
+		default:
+			break;
+	}
+}
