@@ -1,0 +1,23 @@
+20:10:33 **** Build of configuration Debug for project Lab4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Lab4.elf" @"objects.list"   -mcpu=cortex-m3 -T"E:\labs_vxl\lab4\Lab4\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab4.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab4.elf
+ 
+arm-none-eabi-size   Lab4.elf 
+arm-none-eabi-objdump -h -S  Lab4.elf  > "Lab4.list"
+arm-none-eabi-objcopy  -O ihex  Lab4.elf  "Lab4.hex"
+arm-none-eabi-objcopy  -O binary  Lab4.elf  "Lab4.bin"
+   text	   data	    bss	    dec	    hex	filename
+   8028	     20	   1724	   9772	   262c	Lab4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab4.hex
+Finished building: Lab4.bin
+ 
+ 
+Finished building: Lab4.list
+ 
+
+20:10:35 Build Finished. 0 errors, 0 warnings. (took 2s.870ms)
+
