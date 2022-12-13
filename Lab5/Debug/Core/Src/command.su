@@ -1,0 +1,5 @@
+command.c:22:6:HAL_UART_RxCpltCallback	16	static
+command.c:39:6:command_parser_fsm	4	static
+command.c:63:7:getCommand	4	static
+command.c:67:15:status	4	static
+command.c:71:6:clearCommand	4	static
